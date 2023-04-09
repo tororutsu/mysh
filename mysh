@@ -1,0 +1,62 @@
+#!/bin/env bash
+
+## Directory Check ##
+dir_check() {
+  CWD="$HOME/myworld"
+
+  if [[ -d "$CWD" ]]; then
+    echo "Way to go"
+    echo "All directories are here"
+    cd $CWD
+  else
+    cd $HOME
+    mkdir $CWD
+    mkdir -p $CWD/notes
+    touch $HOME/myworld/todo.txt
+    echo "Directories Made!"
+  fi
+}
+####
+
+## MENU ##
+main_menu() {
+  echo "q) Quit  n) Notes"
+}
+####
+
+
+main() {
+  dir_check
+
+  while :
+  do
+    ## Layout ##
+    TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "Go-Me")
+    PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls $HOME/myworld/notes)")
+    PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat $HOME/myworld/todo.txt)")
+    MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(main_menu)")
+
+    PANELS=$(gum join --horizontal "$PANEL1" "$PANEL2")
+
+    gum join --align center --vertical "$TITLE" "$PANELS" "$MENU"
+    ####
+
+    read -p "Enter choice : " CHOICE
+
+        case "$CHOICE" in
+          q)
+            if [ $CHOICE = "q" ]; 
+            then
+              exit
+            fi
+          ;;
+          n) 
+            echo "Notes"
+          ;;
+          *) echo default
+          ;;
+        esac
+  done
+}
+
+main
