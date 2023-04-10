@@ -5,8 +5,8 @@ menuList=("q) Quit" "n) Notes" "t) TODOs")
 ## Layout ##
 main_layout() {
   TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "MySH")
-  PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls $HOME/myworld/notes)")
-  PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat $HOME/myworld/todo.txt)")
+  PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls "$HOME"/myworld/notes)")
+  PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat "$HOME"/myworld/todo.txt)")
   MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(echo "${menuList[*]}")")
 
   PANELS=$(gum join --horizontal "$PANEL1" "$PANEL2")
@@ -32,7 +32,7 @@ note_view() {
     q) quit_program
     ;;
     b) 
-      $NOTE_VIEW=false
+      NOTE_VIEW=false
     ;;
     *) echo default
     ;;
@@ -47,12 +47,12 @@ dir_check() {
   if [[ -d "$CWD" ]]; then
     echo "Way to go"
     echo "All directories are here"
-    cd $CWD
+    cd "$CWD" || exit
   else
-    cd $HOME
-    mkdir $CWD
-    mkdir -p $CWD/notes
-    touch $HOME/myworld/todo.txt
+    cd "$HOME || exit" || exit
+    mkdir "$CWD"
+    mkdir -p "$CWD"/notes
+    touch "$HOME"/myworld/todo.txt
     echo "Directories Made!"
   fi
 }
@@ -60,7 +60,7 @@ dir_check() {
 
 ## TODO List ##
 todo_do() {
-  gum write --placeholder "Write TODOs on seperate line and press CTRL-d to save" >> $HOME/myworld/todo.txt
+  gum write --placeholder "Write TODOs on seperate line and press CTRL-d to save" >> "$HOME"/myworld/todo.txt
 }
 ####
 
@@ -72,11 +72,12 @@ prompt() {
         quit_program
       ;;
       n) 
+        clear
         NOTE_VIEW=true
-        while [[ $NOTE_VIEW=true ]]; do
+        while [[ $NOTE_VIEW = true ]]; do
           note_view
           clear
-          if [ $NOTE_VIEW=false ]
+          if [ $NOTE_VIEW = false ]
           then
             break
           fi
@@ -85,7 +86,7 @@ prompt() {
       t)
         todo_do
       ;;
-      *) echo default
+      *) echo "Try Again"
       ;;
     esac
 }
@@ -107,3 +108,4 @@ main() {
 }
 ####
 main
+
