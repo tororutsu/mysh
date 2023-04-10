@@ -21,9 +21,9 @@ dir_check() {
 ####
 
 ## MENU ##
-main_menu() {
-  echo "${menuList[*]}"
-}
+#main_menu() {
+#  echo "${menuList[*]}"
+#}
 ####
 
 ## TODO List ##
@@ -49,7 +49,7 @@ main() {
     TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "MySH")
     PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls $HOME/myworld/notes)")
     PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat $HOME/myworld/todo.txt)")
-    MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(main_menu)")
+    MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(echo "${menuList[*]}")")
 
     PANELS=$(gum join --horizontal "$PANEL1" "$PANEL2")
 
