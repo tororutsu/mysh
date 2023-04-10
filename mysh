@@ -20,10 +20,22 @@ dir_check() {
 
 ## MENU ##
 main_menu() {
-  echo "q) Quit  n) Notes"
+  echo "q) Quit  n) Notes  t) Todo"
 }
 ####
 
+## TODO List ##
+todo_do() {
+  gum write --placeholder "Write TODOs on seperate line and press CTRL-d to save" >> $HOME/myworld/todo.txt
+}
+####
+
+## QUIT FUNCTION ##
+quit_program() {
+  echo "Quitting MySH...Goodbye"
+  sleep 1
+  exit
+}
 
 main() {
   dir_check
@@ -31,7 +43,7 @@ main() {
   while :
   do
     ## Layout ##
-    TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "Go-Me")
+    TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "MySH")
     PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls $HOME/myworld/notes)")
     PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat $HOME/myworld/todo.txt)")
     MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(main_menu)")
@@ -45,13 +57,13 @@ main() {
 
         case "$CHOICE" in
           q)
-            if [ $CHOICE = "q" ]; 
-            then
-              exit
-            fi
+            quit_program
           ;;
           n) 
             echo "Notes"
+          ;;
+          t)
+            todo_do
           ;;
           *) echo default
           ;;
