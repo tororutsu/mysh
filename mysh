@@ -31,7 +31,8 @@ note_view() {
   case "$NOTE_CHOICE" in
     q) quit_program
     ;;
-    b) NOTE_VIEW=false
+    b) 
+      $NOTE_VIEW=false
     ;;
     *) echo default
     ;;
@@ -75,6 +76,10 @@ prompt() {
         while [[ $NOTE_VIEW=true ]]; do
           note_view
           clear
+          if [ $NOTE_VIEW=false ]
+          then
+            break
+          fi
         done
       ;;
       t)
