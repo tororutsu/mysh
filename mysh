@@ -27,9 +27,15 @@ quit_program() {
 note_view() {
   local menuList=("n) New" "e) Edit" "b) Back" "q) Quit")
   main_layout
-  read -p "Enter Choice : " NOTE_CHOICE
+  new_note() {
+    read -rp "Name your note : " NOTE_NAME
+    $EDITOR "notes/$NOTE_NAME"
+  }
+  read -rp "Enter Choice : " NOTE_CHOICE
   case "$NOTE_CHOICE" in
     q) quit_program
+    ;;
+    n) new_note
     ;;
     b) 
       NOTE_VIEW=false
@@ -66,7 +72,7 @@ todo_do() {
 
 ## PROMPT ##
 prompt() {
-  read -p "Enter choice : " CHOICE
+  read -rp "Enter choice : " CHOICE
     case "$CHOICE" in
       q)
         quit_program
