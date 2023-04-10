@@ -37,6 +37,11 @@ note_view() {
     ;;
     n) new_note
     ;;
+    e)
+      cd notes/ || exit
+      clear
+      gum filter | xargs "$EDITOR"
+    ;;
     b) 
       NOTE_VIEW=false
     ;;
