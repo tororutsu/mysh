@@ -29,6 +29,7 @@ note_view() {
   main_layout
   new_note() {
     read -rp "Name your note : " NOTE_NAME
+    touch notes/"$NOTE_NAME"
     $EDITOR "notes/$NOTE_NAME"
   }
   read -rp "Enter Choice : " NOTE_CHOICE
