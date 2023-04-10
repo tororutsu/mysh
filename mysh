@@ -20,12 +20,6 @@ dir_check() {
 }
 ####
 
-## MENU ##
-#main_menu() {
-#  echo "${menuList[*]}"
-#}
-####
-
 ## TODO List ##
 todo_do() {
   gum write --placeholder "Write TODOs on seperate line and press CTRL-d to save" >> $HOME/myworld/todo.txt
@@ -40,7 +34,27 @@ quit_program() {
 }
 ####
 
+## PROMPT ##
+prompt() {
+  read -p "Enter choice : " CHOICE
+    case "$CHOICE" in
+      q)
+        quit_program
+      ;;
+      n) 
+        echo "Notes"
+      ;;
+      t)
+        todo_do
+      ;;
+      *) echo default
+      ;;
+    esac
+}
+####
+
 main() {
+  # Check for main directories & cd into them
   dir_check
 
   while :
@@ -56,21 +70,8 @@ main() {
     gum join --align center --vertical "$TITLE" "$PANELS" "$MENU"
     ####
 
-    read -p "Enter choice : " CHOICE
-
-        case "$CHOICE" in
-          q)
-            quit_program
-          ;;
-          n) 
-            echo "Notes"
-          ;;
-          t)
-            todo_do
-          ;;
-          *) echo default
-          ;;
-        esac
+    # Prompt for main menu
+    prompt
   done
 }
 
