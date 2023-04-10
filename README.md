@@ -30,6 +30,9 @@ You will need [gum](https://github.com/charmbracelet/gum) for this script to wor
 This program is very much under maintenance. There is not much usage as of yet.
 I plan on updating README everytime something changes.
 
+**Screenshot**
+![mysh](mysh.png?raw=true "mysh")
+
 **UPDATE**
 
 - Notes: You are now able to add notes in the note menu!
