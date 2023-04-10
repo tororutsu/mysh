@@ -2,7 +2,7 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-A simple script to make/view notes and a todo list using gum by charm
+A simple script to make/view notes and a todo list using [gum by charm](https://github.com/charmbracelet/gum)
 
 I made this simple program to test my bash skills and to start understanding to work of maintaining an OSS project.
 Everything about this project is my first, including the `Makefile` so any feedback is more than welcome!  
@@ -29,6 +29,12 @@ You will need [gum](https://github.com/charmbracelet/gum) for this script to wor
 
 This program is very much under maintenance. There is not much usage as of yet.
 I plan on updating README everytime something changes.
+
+**UPDATE**
+
+- Notes: You are now able to add notes in the note menu!
+
+- Notes/Edit: You are now able to edit notes in the note menu!
 
 ## Maintainers
 
