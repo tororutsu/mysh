@@ -53,26 +53,31 @@ prompt() {
 }
 ####
 
+## Layout ##
+main_layout() {
+  TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "MySH")
+  PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls $HOME/myworld/notes)")
+  PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat $HOME/myworld/todo.txt)")
+  MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(echo "${menuList[*]}")")
+
+  PANELS=$(gum join --horizontal "$PANEL1" "$PANEL2")
+
+  gum join --align center --vertical "$TITLE" "$PANELS" "$MENU"
+}
+####
+
+## MAIN LOOP ##
 main() {
   # Check for main directories & cd into them
   dir_check
 
   while :
   do
-    ## Layout ##
-    TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "MySH")
-    PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls $HOME/myworld/notes)")
-    PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat $HOME/myworld/todo.txt)")
-    MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(echo "${menuList[*]}")")
-
-    PANELS=$(gum join --horizontal "$PANEL1" "$PANEL2")
-
-    gum join --align center --vertical "$TITLE" "$PANELS" "$MENU"
-    ####
-
+    # Layout
+    main_layout
     # Prompt for main menu
     prompt
   done
 }
-
+####
 main
