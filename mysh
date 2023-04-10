@@ -15,6 +15,30 @@ main_layout() {
 }
 ####
 
+## QUIT FUNCTION ##
+quit_program() {
+  echo "Quitting MySH...Goodbye"
+  sleep 1
+  exit
+}
+####
+
+## NOTES ##
+note_view() {
+  local menuList=("n) New" "e) Edit" "b) Back" "q) Quit")
+  main_layout
+  read -p "Enter Choice : " NOTE_CHOICE
+  case "$NOTE_CHOICE" in
+    q) quit_program
+    ;;
+    b) NOTE_VIEW=false
+    ;;
+    *) echo default
+    ;;
+  esac
+}
+####
+
 ## Directory Check ##
 dir_check() {
   CWD="$HOME/myworld"
@@ -39,14 +63,6 @@ todo_do() {
 }
 ####
 
-## QUIT FUNCTION ##
-quit_program() {
-  echo "Quitting MySH...Goodbye"
-  sleep 1
-  exit
-}
-####
-
 ## PROMPT ##
 prompt() {
   read -p "Enter choice : " CHOICE
@@ -55,7 +71,11 @@ prompt() {
         quit_program
       ;;
       n) 
-        echo "Notes"
+        NOTE_VIEW=true
+        while [[ $NOTE_VIEW=true ]]; do
+          note_view
+          clear
+        done
       ;;
       t)
         todo_do
@@ -77,6 +97,7 @@ main() {
     main_layout
     # Prompt for main menu
     prompt
+    clear
   done
 }
 ####
