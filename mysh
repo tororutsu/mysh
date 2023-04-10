@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+menuList=("q) Quit" "n) Notes" "t) TODOs")
+
 ## Directory Check ##
 dir_check() {
   CWD="$HOME/myworld"
@@ -20,7 +22,7 @@ dir_check() {
 
 ## MENU ##
 main_menu() {
-  echo "q) Quit  n) Notes  t) Todo"
+  echo "${menuList[*]}"
 }
 ####
 
@@ -36,6 +38,7 @@ quit_program() {
   sleep 1
   exit
 }
+####
 
 main() {
   dir_check
