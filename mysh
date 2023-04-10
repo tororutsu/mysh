@@ -71,7 +71,8 @@ dir_check() {
 
 ## TODO List ##
 todo_do() {
-  gum write --placeholder "Write TODOs on seperate line and press CTRL-d to save" >> "$HOME"/myworld/todo.txt
+  clear
+  gum write --placeholder "Write TODOs and press CTRL-d to save" >> "$HOME"/myworld/todo.txt
 }
 ####
 
