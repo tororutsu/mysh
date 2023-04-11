@@ -4,10 +4,10 @@ menuList=("q) Quit" "n) Notes" "t) TODOs")
 
 ## Layout ##
 main_layout() {
-  TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 "MySH")
-  PANEL1=$(gum style --padding "1 8" --border double --border-foreground 255 "$(ls "$HOME"/myworld/notes)")
-  PANEL2=$(gum style --padding "1 8" --border double --border-foreground 255 "$(cat "$HOME"/myworld/todo.txt)")
-  MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "$(echo "${menuList[*]}")")
+  TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 --width 50 "MySH")
+  PANEL1=$(gum style --padding "1 4" --border double --border-foreground 255 --width 25 "$(ls "$HOME"/myworld/notes)")
+  PANEL2=$(gum style --padding "1 4" --border double --border-foreground 255 --width 25 "$(cat "$HOME"/myworld/todo.txt)")
+  MENU=$(gum style --padding "1 8" --border double --border-foreground 255 --width 50 "$(echo "${menuList[*]}")")
 
   PANELS=$(gum join --horizontal "$PANEL1" "$PANEL2")
 
