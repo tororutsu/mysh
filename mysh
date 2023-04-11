@@ -10,8 +10,8 @@ main_layout() {
   #MENU=$(gum style --padding "1 8" --border double --border-foreground 255 "${menuList[*]}")
 
   TITLE=$(gum style --padding "1 8" --border double --border-foreground 255 --width 50 "MySH")
-  PANEL1=$(gum style --padding "1 4" --border double --border-foreground 255 --width 25 "$(ls "$HOME"/myworld/notes)")
-  PANEL2=$(gum style --padding "1 4" --border double --border-foreground 255 --width 25 "$(cat "$HOME"/myworld/todo.txt)")
+  PANEL1=$(gum style --padding "1 4" --border double --border-foreground 255 --width 25 "$(ls "$HOME"/myworld/notes | head -5)")
+  PANEL2=$(gum style --padding "1 4" --border double --border-foreground 255 --width 25 "$(sed -n 1,5p "$HOME"/myworld/todo.txt)")
   MENU=$(gum style --padding "1 8" --border double --border-foreground 255 --width 50 "${menuList[*]}")
 
   PANELS=$(gum join --horizontal "$PANEL1" "$PANEL2")
